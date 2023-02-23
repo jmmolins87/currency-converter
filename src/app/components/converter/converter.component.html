@@ -1,0 +1,53 @@
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-12 mt-1">
+            <label 
+                for="amount" 
+                class="form-label">
+                Ingrese una cantidad
+            </label>
+            <input 
+                [(ngModel)]="amount"
+                (input)="changeCurrency()"
+                type="number" 
+                id="amount"
+                class="form-control"
+                placeholder="Ingrese su cantidad aquí">
+        </div>
+    </div>
+    <div class="row align-items-baseline mt-3">
+        <div class="col-6 mt-1">
+            <div class="form-group">
+                <label for="have">Tengo</label>
+                <select 
+                    [(ngModel)]="iHave"
+                    (change)="changeCurrency()"
+                    id="have" 
+                    class="form-select mt-1">
+                    <ng-container *ngFor="let currecncy of currencies">
+                        <option [value]="currecncy">{{ currecncy }}</option>
+                    </ng-container>
+                </select>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="form-group">
+                <label for="want">Quiero</label>
+                <select 
+                    [(ngModel)]="iWant"
+                    (change)="changeCurrency()"
+                    id="want" 
+                    class="form-select mt-1">
+                    <ng-container *ngFor="let currecncy of currencies">
+                        <option [value]="currecncy">{{ currecncy }}</option>
+                    </ng-container>
+                </select>
+            </div>
+        </div>
+    </div>
+    <h5 *ngIf="amount > 0" class="text-center mt-5">
+        <span class="badge text-bg-success fs-3">{{ amount }}<span>&nbsp;{{ iHave }}</span></span>
+        <span class="badge text-bg-info d-inline-block ms-2 me-2 text-light">son</span>
+        <span class="badge text-bg-success fs-3">{{ total | number: '0.0-2' }}<span>&nbsp;{{ iWant }}</span></span>
+    </h5>
+</div>
